@@ -1,13 +1,13 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router';
 
-export interface PrivateRouteProps extends RouteProps {
+export interface PublicRouteProps extends RouteProps {
   component: React.ComponentType<RouteProps>;
   isAuthenticated: boolean;
 }
 
-export const PrivateRoute: React.FC<PrivateRouteProps> = (
-  props: PrivateRouteProps
+export const PublicRoute: React.FC<PublicRouteProps> = (
+  props: PublicRouteProps
 ) => {
   const { component: Component, isAuthenticated, ...rest } = props;
 
@@ -15,10 +15,10 @@ export const PrivateRoute: React.FC<PrivateRouteProps> = (
     <Route
       {...rest}
       render={props => {
-        return isAuthenticated ? (
+        return !isAuthenticated ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/auth" />
+          <Redirect to="/" />
         );
       }}
     />

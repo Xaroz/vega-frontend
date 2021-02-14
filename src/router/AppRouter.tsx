@@ -1,29 +1,27 @@
 import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Redirect,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 
-import { PrivateRoute } from '../router/PrivateRoute';
 import { ChatPage } from '../pages/ChatPage';
-import { LoginPage } from '../pages/LoginPage';
-import { RegisterPage } from '../pages/RegisterPage';
+
+import { AuthRouter } from './AuthRouter';
+import { PrivateRoute } from '../router/PrivateRoute';
+import { PublicRoute } from '../router/PublicRoute';
 
 export const AppRouter: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(true);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   return (
     <Router>
       <Switch>
-        <Route exact path="/" component={ChatPage} />
-        <Route exact path="/auth/login" component={LoginPage} />
-        {/* <Route exact path="/auth/register" component={RegisterPage} /> */}
+        <PublicRoute
+          path="/auth"
+          component={AuthRouter}
+          isAuthenticated={isAuthenticated}
+        />
         <PrivateRoute
           exact
-          path="/auth/register"
-          component={RegisterPage}
+          path="/"
+          component={ChatPage}
           isAuthenticated={isAuthenticated}
         />
         <Redirect to="/" />
