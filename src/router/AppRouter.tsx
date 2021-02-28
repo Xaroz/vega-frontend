@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 
-import { ChatPage } from '../pages/ChatPage';
+import { ChatPage } from 'pages/ChatPage';
 
 import { AuthRouter } from 'router/AuthRouter';
 import { PrivateRoute } from 'router/PrivateRoute';
