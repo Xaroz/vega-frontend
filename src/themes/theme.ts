@@ -15,8 +15,8 @@ const lightTheme: DefaultTheme = {
   borderRadius: '5px',
 
   colors: {
-    main: 'red',
-    secondary: 'magenta',
+    main: '#FF5B15',
+    secondary: '#FFC5AD',
   },
 };
 
